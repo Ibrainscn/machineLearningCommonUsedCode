@@ -7,46 +7,88 @@ Plot Hierarchical Clustering Dendrogram
 This example plots the corresponding dendrogram of a hierarchical clustering
 using AgglomerativeClustering and the dendrogram method available in scipy.
 """
-
+# %%
 import numpy as np
-
-from matplotlib import pyplot as plt
-from scipy.cluster.hierarchy import dendrogram
-from sklearn.datasets import load_iris
 from sklearn.cluster import AgglomerativeClustering
+from scipy.cluster.hierarchy import dendrogram, linkage
+from matplotlib import pyplot as plt
+# %%
+X = np.array([[5,3],
+    [10,15],
+    [15,12],
+    [24,10],
+    [30,30],
+    [85,70],
+    [71,80],
+    [60,78],
+    [70,55],
+    [80,91],])
+# %%
+labels = range(1, 11)
+plt.figure(figsize=(10, 7))
+plt.subplots_adjust(bottom=0.1)
+plt.scatter(X[:,0],X[:,1], label='True Position')
 
-
-def plot_dendrogram(model, **kwargs):
-    # Create linkage matrix and then plot the dendrogram
-
-    # create the counts of samples under each node
-    counts = np.zeros(model.children_.shape[0])
-    n_samples = len(model.labels_)
-    for i, merge in enumerate(model.children_):
-        current_count = 0
-        for child_idx in merge:
-            if child_idx < n_samples:
-                current_count += 1  # leaf node
-            else:
-                current_count += counts[child_idx - n_samples]
-        counts[i] = current_count
-
-    linkage_matrix = np.column_stack([model.children_, model.distances_,
-                                      counts]).astype(float)
-
-    # Plot the corresponding dendrogram
-    dendrogram(linkage_matrix, **kwargs)
-
-
-iris = load_iris()
-X = iris.data
-
-# setting distance_threshold=0 ensures we compute the full tree.
-model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
-
-model = model.fit(X)
-plt.title('Hierarchical Clustering Dendrogram')
-# plot the top three levels of the dendrogram
-plot_dendrogram(model, truncate_mode='level', p=3)
-plt.xlabel("Number of points in node (or index of point if no parenthesis).")
+for label, x, y in zip(labels, X[:, 0], X[:, 1]):
+    plt.annotate(
+        label,
+        xy=(x, y), xytext=(-3, 3),
+        textcoords='offset points', ha='right', va='bottom')
 plt.show()
+# %%
+linked = linkage(X, 'single')
+labelList = range(1, 11)
+plt.figure(figsize=(10, 7))
+dendrogram(linked,
+            orientation='top',
+            labels=labelList,
+            distance_sort='descending',
+            show_leaf_counts=True)
+plt.show()
+# %%
+cluster = AgglomerativeClustering(n_clusters=2, affinity='euclidean', linkage='ward')
+cluster.fit_predict(X)
+
+print(cluster.labels_)
+plt.scatter(X[:,0],X[:,1], c=cluster.labels_, cmap='rainbow')
+plt.show()
+# %%
+'''
+Solving the Wholesale Customer Segmentation problem using Hierarchical Clustering
+
+https://www.analyticsvidhya.com/blog/2019/05/beginners-guide-hierarchical-clustering/
+
+We will be working on a wholesale customer segmentation problem. You can 
+download the dataset using this link. The data is hosted on the UCI Machine 
+Learning repository. The aim of this problem is to segment the clients of a 
+wholesale distributor based on their annual spending on diverse product 
+categories, like milk, grocery, region, etc.
+'''
+import pandas as pd
+data = pd.read_csv('Wholesale customers data.csv')
+data.head()
+# %%
+from sklearn.preprocessing import normalize
+data_scaled = normalize(data)
+data_scaled = pd.DataFrame(data_scaled, columns=data.columns)
+data_scaled.head()
+# %%
+import scipy.cluster.hierarchy as shc
+plt.figure(figsize=(10, 7))  
+plt.title("Dendrograms")  
+dend = shc.dendrogram(shc.linkage(data_scaled, method='ward'))
+# %%
+plt.figure(figsize=(10, 7))  
+plt.title("Dendrograms")  
+dend = shc.dendrogram(shc.linkage(data_scaled, method='ward'))
+plt.axhline(y=6, color='r', linestyle='--')
+# %%
+from sklearn.cluster import AgglomerativeClustering
+cluster = AgglomerativeClustering(n_clusters=2, affinity='euclidean', linkage='ward')  
+cluster.fit_predict(data_scaled)
+# %%
+plt.figure(figsize=(10, 7))  
+plt.scatter(data_scaled['Milk'], data_scaled['Grocery'], c=cluster.labels_) 
+# Awesome! We can clearly visualize the two clusters here. This is how we can 
+# implement hierarchical clustering in Python.
+# %%
