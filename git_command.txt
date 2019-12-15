@@ -1,0 +1,12 @@
+git init
+git add myfile.txt 
+git add .
+git status
+git commit (i Esc :wq)
+git commit -m "first commit"
+git remote add origin https://github.com/Ibrainscn/machineLearningCommonUsedCode.git
+git push -u origin master
+
+git pull origin master
+git push -f origin master
+ 
