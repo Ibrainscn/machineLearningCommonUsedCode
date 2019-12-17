@@ -1,9 +1,10 @@
+# Machine Learning Fundamentals - - Towards Data Science
 Zhenhong Hu
+
 Last Updated: 12/18/2019
 
--> Machine Learning Fundamentals - - Towards Data Science <-
 ---
-# Pre-processing
+## Pre-processing
 - Feature Extraction
 - Scaling and Normalization
 - Feature Selection
@@ -19,18 +20,18 @@ Last Updated: 12/18/2019
 	- Principal Component Analysis (PCA)
 	- Linear Discriminat Aanalysis (LDA)
 
-# Model Evaluation
+## Model Evaluation
 - Cross-validation
 - Confusion Matrix
 - Receiver Operating Characteristic (ROC)
 
-# Hyper-parameters Optimization
+## Hyper-parameters Optimization
 - Exhaustive Grid Search
 - Randomized Parameter Optimization
 - Akaike Information Criterion (AIC) 
 - Bayes Information Criterion (BIC)
 
-# Regression
+## Regression
 - Linear Regression
 - Ridge Regression
 - Lasso Regression
@@ -39,7 +40,7 @@ Last Updated: 12/18/2019
 - Logistic Regression
 - SVR
 
-# Clustering
+## Clustering
 - K-Means/K-Medoids
 - Mean Shift
 - Density-Based Spatial Clustering of Applications with Noise (DBSCAN)
@@ -47,7 +48,7 @@ Last Updated: 12/18/2019
 - Agglomerative Hierarchical Clustering
 - Ordering Points To Identify Clustering Algorithm (OPTICS)
 
-# Classification
+## Classification
 - KNN
 - SVM
 - Trees
@@ -56,12 +57,12 @@ Last Updated: 12/18/2019
 - Logistic Regression
 - Neural Networks
 
-# Visualizations
+## Visualizations
 - Matplotlib
 - Plotly
 - Seaborn
 
-# Imputation of missing values
+## Imputation of missing values
 - For various reasons, many real world datasets contain missing values, often encoded as blanks, NaNs or other placeholders. 
 - A basic strategy to use incomplete datasets is to discard entire rows and/or columns containing missing values. However, this comes at the price of losing data which may be valuable (even though incomplete). A better strategy is to impute the missing values, i.e., to infer them from the known part of the data.
 - Univariate vs. Multivariate Imputation:
@@ -71,8 +72,17 @@ Last Updated: 12/18/2019
 - Multivariate Imputation:
 	- A more sophisticated approach is to use the IterativeImputer class, which models each feature with missing values as a function of other features, and uses that estimate for imputation. It does so in an iterated round-robin fashion: at each step, a feature column is designated as output y and the other feature columns are treated as inputs X. A regressor is fit on (X, y) for known y. Then, the regressor is used to predict the missing values of y. This is done for each feature in an iterative fashion, and then is repeated for max_iter imputation rounds. The results of the final imputation round are returned.
 
+## Novelty and Outlier Detection
+- Outlier detection and novelty detection are both used for anomaly detection, where one is interested in detecting abnormal or unusual observations. Outlier detection is then also known as unsupervised anomaly detection and novelty detection as semi-supervised anomaly detection. In the context of outlier detection, the outliers/anomalies cannot form a dense cluster as available estimators assume that the outliers/anomalies are located in low density regions. On the contrary, in the context of novelty detection, novelties/anomalies can form a dense cluster as long as they are in a low density region of the training data, considered as normal in this context.
+- Outlier Detection Methods
+  - Robust Covariance
+  - One-Class SVM
+  - Isolation Forest
+  - Local Outlier Factor
+- Novelty Detection Methods
+  - Local Outlier Factor 
 
-# Ensemble methods
+## Ensemble methods
 - The goal of ensemble methods is to combine the predictions of several base estimators built with a given learning algorithm in order to improve generalizability/robustness over a single estimator.
 - Two families of ensemble methods are usually distinguished:
 	- In averaging methods, the driving principle is to build several estimators independently and then to average their predictions. On average, the combined estimator is usually better than any of the single base estimator because its variance is reduced.
@@ -80,7 +90,12 @@ Last Updated: 12/18/2019
 	- By contrast, in boosting methods, base estimators are built sequentially and one tries to reduce the bias of the combined estimator. The motivation is to combine several weak models to produce a powerful ensemble.
 	- Examples: AdaBoost, Gradient Tree Boosting, …
 
-# Model persistence
+## Multiclass and multilabel algorithms
+- **Multiclass classification** means a classification task with more than two classes; e.g., classify a set of images of fruits which may be oranges, apples, or pears. Multiclass classification makes the assumption that each sample is assigned to one and only one label: a fruit can be either an apple or a pear but not both at the same time.
+- **Multilabel classification** assigns to each sample a set of target labels. This can be thought as predicting properties of a data-point that are not mutually exclusive, such as topics that are relevant for a document. A text might be about any of religion, politics, finance or education at the same time or none of these.
+- **Multioutput regression** assigns each sample a set of target values. This can be thought of as predicting several properties for each data-point, such as wind direction and magnitude at a certain location.
+
+## Model persistence
 - After training a ML model, it is desirable to have a way to persist the model for future use without having to retrain. 
 - It is possible to save a model in scikit-learn by using Python’s built-in persistence model, namely pickle!
 
