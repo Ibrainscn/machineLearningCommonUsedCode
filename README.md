@@ -24,6 +24,7 @@ Last Updated: 12/18/2019
 - Cross-validation
 - Confusion Matrix
 - Receiver Operating Characteristic (ROC)
+- Precision-Recall 
 
 ## Hyper-parameters Optimization
 - Exhaustive Grid Search
@@ -99,7 +100,10 @@ Last Updated: 12/18/2019
 - After training a ML model, it is desirable to have a way to persist the model for future use without having to retrain. 
 - It is possible to save a model in scikit-learn by using Python’s built-in persistence model, namely pickle!
 
-
+## EEG signal processing package in python
+- **MNE:** https://mne.tools/stable/auto_examples/index.html
+- **PyEEG:** https://github.com/forrestbao/pyeeg
+- **EEGLearn:** https://github.com/pbashivan/EEGLearn
 
 
 
