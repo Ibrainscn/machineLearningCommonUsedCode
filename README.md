@@ -11,10 +11,10 @@ Last Updated: 12/16/2019
 	- Removing features with low variance
 	- Univariate feature selection
 	- Recursive feature elimination
-		 - feature_importances_
-		 - feature_coef_
-		 - feature_weight_map_
-	- Feature selection using SelectFromModel
+		 - feature importances
+		 - feature coef
+		 - feature weight map
+	- Feature selection using SelectFromodel
 
 - Dimensionality Reduction
 	- Principal Component Analysis (PCA)
@@ -28,6 +28,10 @@ Last Updated: 12/16/2019
 
 ## Hyper-parameters Optimization
 - Exhaustive Grid Search
+    -Idea: List all possible values of each parameter and then systematically try all the combinations. 
+     For example, a typical soft-margin SVM classifier equipped with an RBF kernel has at least two hyperparameters that need to be tuned for good performance on unseen data: a regularization constant C and a kernel hyperparameter Î³. Both parameters are continuous, so to perform grid search, one selects a finite set of "reasonable" values for each, say C={10,100,1000}, gamma = {0.1,0.2,0.5,1.0}. 
+     Grid search then trains an SVM with each pair (C, Î³) in the Cartesian product of these two sets and evaluates their performance on a held-out validation set (or by internal cross-validation on the training set, in which case multiple SVMs are trained per pair). Finally, the grid search algorithm outputs the settings that achieved the highest score in the validation procedure.
+     Grid search suffers from the curse of dimensionality, but is often embarrassingly parallel because the hyperparameter settings it evaluates are typically independent of each other
 - Randomized Parameter Optimization
 - Akaike Information Criterion (AIC) 
 - Bayes Information Criterion (BIC)
@@ -45,7 +49,7 @@ Last Updated: 12/16/2019
 - K-Means/K-Medoids
 - Mean Shift
 - Density-Based Spatial Clustering of Applications with Noise (DBSCAN)
-- Expectation–Maximization (EM) Clustering using Gaussian Mixture Models (GMM)
+- ExpectationÂ–Maximization (EM) Clustering using Gaussian Mixture Models (GMM)
 - Agglomerative Hierarchical Clustering
 - Ordering Points To Identify Clustering Algorithm (OPTICS)
 
@@ -87,9 +91,11 @@ Last Updated: 12/16/2019
 - The goal of ensemble methods is to combine the predictions of several base estimators built with a given learning algorithm in order to improve generalizability/robustness over a single estimator.
 - Two families of ensemble methods are usually distinguished:
 	- In averaging methods, the driving principle is to build several estimators independently and then to average their predictions. On average, the combined estimator is usually better than any of the single base estimator because its variance is reduced.
-	- Examples: Bagging methods, Forests of randomized trees, …
+	- Examples: Bagging methods, Forests of randomized trees, 
+
 	- By contrast, in boosting methods, base estimators are built sequentially and one tries to reduce the bias of the combined estimator. The motivation is to combine several weak models to produce a powerful ensemble.
-	- Examples: AdaBoost, Gradient Tree Boosting, …
+	- Examples: AdaBoost, Gradient Tree Boosting, 
+
 
 ## Multiclass and multilabel algorithms
 - **Multiclass classification** means a classification task with more than two classes; e.g., classify a set of images of fruits which may be oranges, apples, or pears. Multiclass classification makes the assumption that each sample is assigned to one and only one label: a fruit can be either an apple or a pear but not both at the same time.
@@ -98,7 +104,7 @@ Last Updated: 12/16/2019
 
 ## Model persistence
 - After training a ML model, it is desirable to have a way to persist the model for future use without having to retrain. 
-- It is possible to save a model in scikit-learn by using Python’s built-in persistence model, namely pickle!
+- It is possible to save a model in scikit-learn by using PythonÂ’s built-in persistence model, namely pickle!
 
 ## EEG signal processing package in python
 - **MNE:** https://mne.tools/stable/auto_examples/index.html
