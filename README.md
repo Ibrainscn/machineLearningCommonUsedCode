@@ -121,6 +121,26 @@ Last Updated: 12/16/2019
 - After training a ML model, it is desirable to have a way to persist the model for future use without having to retrain. 
 - It is possible to save a model in scikit-learn by using Pythons built-in persistence model, namely pickle!
 
+## Deep Learning
+### Basic concept
+* Deciding on the `batch size` and number of `epochs`
+    * `batch size:` The batch size defines the number of samples that will be propagated through the network.
+    >For instance, let’s say you have 1000 training samples and you want to set up a batch_size equal to 100. The algorithm takes the first 100 samples (from 1st to 100th) from the training dataset and trains the network. Next, it takes the second 100 samples (from 101st to 200th) and trains the network again. We can keep doing this procedure until we have propagated all samples through the network.
+    
+    >Advantages of using a batch size < number of all samples:
+    >* It requires less memory. Since you train the network using fewer samples, the overall training procedure requires less memory. That’s especially important if you are not able to fit the whole dataset in your machine’s memory.
+    >* Typically networks train faster with mini-batches. That’s because we update the weights after each propagation.
+    
+    >Disadvantages of using a batch size < number of all samples:
+    >* The smaller the batch the less accurate the estimate of the gradient will be.
+    
+    * `epochs:` The number of epochs is a hyperparameter that defines the number times that the learning algorithm will work through the entire training dataset.
+    
+    > One epoch means that each sample in the training dataset has had an opportunity to update the internal model parameters. An epoch is comprised of one or more batches.
+    
+    >There are no hard and fast rules for selecting batch sizes or the number of epochs, and there is no guarantee that increasing the number of epochs provides a better result than a lesser number.
+
+
 ## EEG signal processing package in python
 - **MNE:** https://mne.tools/stable/auto_examples/index.html
 - **PyEEG:** https://github.com/forrestbao/pyeeg
