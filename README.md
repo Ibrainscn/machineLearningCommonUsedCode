@@ -124,7 +124,8 @@ Last Updated: 12/16/2019
 ## Deep Learning
 ### Basic concept
 * Deciding on the `batch size` and number of `epochs`
-    * `batch size:` The batch size defines the number of samples that will be propagated through the network.
+    
+    `batch size:` The batch size defines the number of samples that will be propagated through the network.
     >For instance, let’s say you have 1000 training samples and you want to set up a batch_size equal to 100. The algorithm takes the first 100 samples (from 1st to 100th) from the training dataset and trains the network. Next, it takes the second 100 samples (from 101st to 200th) and trains the network again. We can keep doing this procedure until we have propagated all samples through the network.
     
     >Advantages of using a batch size < number of all samples:
@@ -134,7 +135,7 @@ Last Updated: 12/16/2019
     >Disadvantages of using a batch size < number of all samples:
     >* The smaller the batch the less accurate the estimate of the gradient will be.
     
-    * `epochs:` The number of epochs is a hyperparameter that defines the number times that the learning algorithm will work through the entire training dataset.
+    `epochs:` The number of epochs is a hyperparameter that defines the number times that the learning algorithm will work through the entire training dataset.
     
     > One epoch means that each sample in the training dataset has had an opportunity to update the internal model parameters. An epoch is comprised of one or more batches.
     
