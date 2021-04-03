@@ -30,10 +30,19 @@ Last Updated: 12/16/2019
 - Exhaustive Grid Search
     >Idea: List all possible values of each parameter and then systematically try all the combinations. 
     
-    >For example, a typical soft-margin SVM classifier equipped with an RBF kernel has at least two hyperparameters that need to be tuned for good performance on unseen data: a regularization constant C and a kernel hyperparameter γ. Both parameters are continuous, so to perform grid search, one selects a finite set of "reasonable" values for each, say C={10,100,1000}, gamma = {0.1,0.2,0.5,1.0}. Grid search then trains an SVM with each pair (C, γ) in the Cartesian product of these two sets and evaluates their performance on a held-out validation set (or by internal cross-validation on the training set, in which case multiple SVMs are trained per pair). Finally, the grid search algorithm outputs the settings that achieved the highest score in the validation procedure.
+    >For example, a typical soft-margin SVM classifier equipped with an RBF kernel has at least two hyperparameters that need to be tuned for good performance on unseen data: a regularization constant C and a kernel hyperparameter γ. Both parameters are continuous, so to perform grid search, one selects a finite set of "reasonable" values for each, say C={10,100,1000}, γ = {0.1,0.2,0.5,1.0}. Grid search then trains an SVM with each pair (C, γ) in the Cartesian product of these two sets and evaluates their performance on a held-out validation set (or by internal cross-validation on the training set, in which case multiple SVMs are trained per pair). Finally, the grid search algorithm outputs the settings that achieved the highest score in the validation procedure.
     
     >Grid search suffers from the curse of dimensionality, but is often embarrassingly parallel because the hyperparameter settings it evaluates are typically independent of each other
+    
+    [YouTube: BayesianOptimization](https://youtu.be/IAFggDE3tKo)
 - Randomized Parameter Optimization
+    >* Choose parameter combinations at random
+    >* Train & evaluate model with each combination
+    >* Choose the combination with the highest accuracy on the validation set
+    >* Far more efficient than grid search
+    >* No guaranteed to find the best combination
+    >* No "intelligence" in the search
+
 - Akaike Information Criterion (AIC) 
 - Bayes Information Criterion (BIC)
 
