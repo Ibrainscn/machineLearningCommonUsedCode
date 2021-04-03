@@ -34,7 +34,6 @@ Last Updated: 12/16/2019
     
     >* Grid search suffers from the curse of dimensionality, but is often embarrassingly parallel because the hyperparameter settings it evaluates are typically independent of each other
     
-    [YouTube: BayesianOptimization](https://youtu.be/IAFggDE3tKo)
 - Randomized Parameter Optimization
     >* Choose parameter combinations at random
     >* Train & evaluate model with each combination
@@ -42,7 +41,13 @@ Last Updated: 12/16/2019
     >* Far more efficient than grid search
     >* No guaranteed to find the best combination
     >* No "intelligence" in the search
-
+- Bayesian Optimization
+    >* Exploration of a single combination of hyperparameters is relatively expensive so we want to do as few as possible
+    >* We want to learn from each run of the model, so we can then choose the next combination to try as intelligently as possible
+    >* We can use a technique called Gaussian Processes to get a better understanding of the underlying relationship between hyperparameter values and model fitness
+    > * Bayesian Optimization is often used in applied machine learning to tune the hyperparameters of a given well-performing model on a validation dataset
+    >* Bayesian Optimization provides a principled technique based on Bayes Theorem to direct a search of a global optimization problem that is efficient and effective. It works by building a probabilistic model of the objective function, called the surrogate function, that is then searched efficiently with an acquisition function before candidate samples are chosen for evaluation on the real objective function
+    >* [YouTube: Bayesian Optimization](https://youtu.be/IAFggDE3tKo)
 - Akaike Information Criterion (AIC) 
 - Bayes Information Criterion (BIC)
 
