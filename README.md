@@ -123,7 +123,7 @@ Last Updated: 12/16/2019
 
 ## Deep Learning
 ### Basic concept
-* Deciding on the `batch size`, number of `epochs`, and `Dropout`
+* Deciding on the `batch size`, number of `epochs`, and `dropout`
     
     `batch size:` The batch size defines the number of samples that will be propagated through the network.
     >For instance, let’s say you have 1000 training samples and you want to set up a batch_size equal to 100. The algorithm takes the first 100 samples (from 1st to 100th) from the training dataset and trains the network. Next, it takes the second 100 samples (from 101st to 200th) and trains the network again. We can keep doing this procedure until we have propagated all samples through the network.
@@ -140,7 +140,7 @@ Last Updated: 12/16/2019
     
     >There are no hard and fast rules for selecting batch sizes or the number of epochs, and there is no guarantee that increasing the number of epochs provides a better result than a lesser number.
     
-    `Dropout:` Dropout is regularization technique to avoid overfitting (increase the validation accuracy) thus increasing the generalizing power.
+    `dropout:` Dropout is regularization technique to avoid overfitting (increase the validation accuracy) thus increasing the generalizing power.
     > A fully connected layer occupies most of the parameters, and hence, neurons develop co-dependency amongst each other during training which curbs the individual power of each neuron leading to over-fitting of training data.
     >* Generally, use a small dropout value of 20%-50% of neurons with 20% providing a good starting point. A probability too low has minimal effect and a value too high results in under-learning by the network.
     >* Use a larger network. You are likely to get better performance when dropout is used on a larger network, giving the model more of an opportunity to learn independent representations.
