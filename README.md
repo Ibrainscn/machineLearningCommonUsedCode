@@ -154,6 +154,8 @@ Last Updated: 12/16/2019
     
     The general form of an activation function is shown below:
     ![activation function](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/The%20general%20form%20of%20an%20activation%20function.png)
+    f(.) represents the activation function acting on the weights and biases, producing h, the neural output.
+
     
 
 
