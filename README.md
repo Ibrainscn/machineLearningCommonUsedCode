@@ -154,7 +154,30 @@ Last Updated: 12/16/2019
     
     The general form of an activation function is shown below:
     ![activation function](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/The%20general%20form%20of%20an%20activation%20function.png)
+    
     f(.) represents the activation function acting on the weights and biases, producing h, the neural output.
+    
+    Why do we need non-linearity? 
+    >* Technically, we do not need non-linearity, but there are benefits to using non-linear functions.
+    If we do not apply an activation function, the output signal would simply be a linear function. A linear function is just a polynomial of one degree. Now, a linear equation is easy to solve but they are limited in their complexity and have less power to learn complex functional mappings from data. A neural network without any activation function would simply be a linear regression model, which is limited in the set of functions it can approximate. 
+    >* We want our neural network to not just learn and compute a linear function but something more complicated than that.
+    Using a non-linear activation we are able to generate non-linear mappings from inputs to outputs.
+    
+    Why do we want to ensure we have large gradients through the hidden units?
+    >* If we have small gradients and several hidden layers, these gradients will be multiplied during backpropagation. Computers have limitations on the precision to which they can work with numbers, and hence if we multiply many very small numbers, the value of the gradient will quickly vanish. This is commonly known as the vanishing gradient problem and is an important challenge when generating deep neural networks.
+    
+    Some of the most common choices for activation function are:
+    >* Sigmoid
+    >* ReLU (rectified linear unit)
+    >* Leaky ReLU
+    >* Generalized ReLU
+    >* MaxOut
+    >* Softplus
+    >* Tanh
+    >* Swish
+    
+    These activation functions are summarized below:
+    ![](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/Summary%20of%20activation%20functions%20for%20neural%20networks.png)
 
     
 
