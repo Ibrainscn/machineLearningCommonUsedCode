@@ -190,6 +190,11 @@ Last Updated: 12/16/2019
     
     Cross-entropy and mean squared error are the two main types of loss functions to use when training neural network models.
     However, the maximum likelihood approach was adopted for several reasons, but primarily because of the results it produces. More specifically, neural networks for classification that use a sigmoid or softmax activation function in the output layer learn faster and more robustly using a cross-entropy loss function than using mean squared error.
+    
+    A summary of the data types, distributions, output layers, and cost functions are given in the table below:  
+    ![Table of cost functions](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/cost%20functions.png)
+
+
 
 
 
