@@ -144,6 +144,18 @@ Last Updated: 12/16/2019
     > A fully connected layer occupies most of the parameters, and hence, neurons develop co-dependency amongst each other during training which curbs the individual power of each neuron leading to over-fitting of training data.
     >* Generally, use a small dropout value of 20%-50% of neurons with 20% providing a good starting point. A probability too low has minimal effect and a value too high results in under-learning by the network.
     >* Use a larger network. You are likely to get better performance when dropout is used on a larger network, giving the model more of an opportunity to learn independent representations.
+    
+* Activation Functions
+
+    The activation function is analogous to the build-up of electrical potential in biological neurons which then fire once a certain activation potential is reached. This activation potential is mimicked in artificial neural networks using a probability. Depending upon which activation function is chosen, the properties of the network firing can be quite different.
+    >The activation function should do two things:
+    >* Ensures not linearity
+    >* Ensure gradients remain large through the hidden unit
+    
+    The general form of an activation function is shown below:
+    
+
+
 
     
 
