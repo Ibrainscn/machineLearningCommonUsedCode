@@ -178,8 +178,20 @@ Last Updated: 12/16/2019
     
     These activation functions are summarized below:
     ![](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/Summary%20of%20activation%20functions%20for%20neural%20networks.png)
-
     
+    ReLU avoids and rectifies the vanishing gradient problem. Almost all deep learning Models use ReLU nowadays. However, ReLU should only be used within hidden layers of a neural network, and not for the output layer — which should be sigmoid for binary classification, softmax for multiclass classification, and linear for a regression problem.
+    [More information about each activation function are here](https://towardsdatascience.com/comprehensive-introduction-to-neural-network-architecture-c08c6d8e5d98)
+    
+* Loss Functions
+
+    Loss functions (also called cost functions) are an important aspect of neural networks. 
+    
+    Maximum Likelihood provides a framework for choosing a loss function in general. As such, the loss function to use depends on the output data distribution and is closely coupled to the output unit.
+    
+    Cross-entropy and mean squared error are the two main types of loss functions to use when training neural network models.
+    However, the maximum likelihood approach was adopted for several reasons, but primarily because of the results it produces. More specifically, neural networks for classification that use a sigmoid or softmax activation function in the output layer learn faster and more robustly using a cross-entropy loss function than using mean squared error.
+
+
 
 
 
