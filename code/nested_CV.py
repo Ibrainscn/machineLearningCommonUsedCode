@@ -1,8 +1,10 @@
 import pandas as pd
 from sklearn.model_selection import KFold, StratifiedKFold, GridSearchCV, train_test_split
 from sklearn.linear_model import LogisticRegression
+from tqdm import tqdm
 
-data = pd.read_csv("creditcard.csv")
+data = pd.read_csv("C:/Users/zhenh/Documents/GitHub/machineLearningCommonUsedCode/data/creditcard_shortversion.csv")
+
 y = data["Class"]
 X = data.drop("Class", axis=1)
 
