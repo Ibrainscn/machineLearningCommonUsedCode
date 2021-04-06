@@ -136,6 +136,13 @@ Last Updated: 12/16/2019
 - After training a ML model, it is desirable to have a way to persist the model for future use without having to retrain. 
 - It is possible to save a model in scikit-learn by using Pythons built-in persistence model, namely pickle!
 
+## Time Series 
+### Classical Time Series Forecasting Methods [11 methods in Python](https://machinelearningmastery.com/time-series-forecasting-methods-in-python-cheat-sheet/)
+
+
+
+
+
 ## Deep Learning
 ### Basic concept
 * Deciding on the `batch size`, number of `epochs`, and `dropout`
