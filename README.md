@@ -151,6 +151,11 @@ This cheat sheet demonstrates [11 different classical time series forecasting me
 10. Simple Exponential Smoothing (SES)
 11. Holt Winter’s Exponential Smoothing (HWES)
 
+### Choosing model order: p and q
+Finding appropriate values of p and q in the ARMA(p,q) model can be facilitated by plotting the [partial autocorrelation function (PACF)](https://en.wikipedia.org/wiki/Partial_autocorrelation_function) for an estimate of p, and likewise using the [autocorrelation functions](https://en.wikipedia.org/wiki/Autocorrelation) for an estimate of q. Extended autocorrelation functions (EACF) can be used to simultaneously determine p and q. Further information can be gleaned by considering the same functions for the residuals of a model fitted with an initial selection of p and q.
+
+Brockwell & Davis recommend using [Akaike information criterion (AIC)](https://en.wikipedia.org/wiki/Akaike_information_criterion) for finding p and q. Another possible choice for order determining is the  [Bayesian information criterion (BIC)](https://en.wikipedia.org/wiki/Bayesian_information_criterion) criterion.
+
 [More information on Wikipedia: AR, MA, ARMA, ARIMA ...](https://en.wikipedia.org/wiki/Autoregressive%E2%80%93moving-average_model)
 
 
