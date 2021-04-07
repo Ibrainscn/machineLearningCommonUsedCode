@@ -251,14 +251,36 @@ print(yhat)
 ### How to Convert a Time Series to a Supervised Learning Problem in Python
 [Time Series vs Supervised Learning:](https://machinelearningmastery.com/convert-time-series-supervised-learning-problem-python/) Before machine learning can be used, time series forecasting problems must be re-framed as supervised learning problems. From a sequence to pairs of input and output sequences.
 
-### Time series cross validation
+### Time series k-fold cross validation
 You may be asking how to do cross-validation for time series because time series have this temporal structure and one cannot randomly mix values in a fold while preserving this structure. With randomization, all time dependencies between observations will be lost. This is why we will have to use a more tricky approach in optimizing the model parameters. I don't know if there's an official name to this, but on [CrossValidated](https://stats.stackexchange.com/questions/14099/using-k-fold-cross-validation-for-time-series-model-selection), where one can find all answers but the Answer to the Ultimate Question of Life, the Universe, and Everything, the proposed name for this method is "cross-validation on a rolling basis".
 
-The idea is rather simple -- we train our model on a small segment of the time series from the beginning until some  t , make predictions for the next  t+n  steps, and calculate an error. Then, we expand our training sample to  t+n  value, make predictions from  t+n  until  t+2∗n , and continue moving our test segment of the time series until we hit the last available observation. As a result, we have as many folds as  n  will fit between the initial training sample and the last observation.
+The idea is rather simple -- on a **rolling basis**. We train our model on a small segment of the time series from the beginning until some t , make predictions for the next t+n steps, and calculate an error. Then, we expand our training sample to  t+n  value, make predictions from  t+n  until  t+2∗n , and continue moving our test segment of the time series until we hit the last available observation. As a result, we have as many folds as  n  will fit between the initial training sample and the last observation.
 
+An approach that's sometimes more principled for time series is **forward chaining**. In other words, the "canonical" way to do time-series cross-validation is to **roll through** the dataset, where your procedure would be something like this:
+* fold 1 : training [1], test [2]
+* fold 2 : training [1 2], test [3]
+* fold 3 : training [1 2 3], test [4]
+* fold 4 : training [1 2 3 4], test [5]
+* fold 5 : training [1 2 3 4 5], test [6]
+
+To make things intuitive, here is an image for same:
 ![Time series k-fold CV](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/time%20series%20CV.png)
 
 
+### Time series hv-block cross-validation
+There is nothing wrong with using blocks of "future" data for time series cross validation in most situations. By most situations I refer to models for stationary data, which are the models that we typically use. E.g. when you fit an ARIMA(p,d,q), with d>0 to a series, you take d differences of the series and fit a model for stationary data to the residuals.
+
+For cross validation to work as a model selection tool, you need approximate independence between the training and the test data. The problem with time series data is that adjacent data points are often highly dependent, so standard cross validation will fail. The remedy for this is to leave a gap between the test sample and the training samples, on both sides of the test sample. The reason why you also need to leave out a gap before the test sample is that dependence is symmetric when you move forward or backward in time (think of correlation).
+
+This approach is called hv cross validation (leave v out, delete h observations on either side of the test sample) and is described in [this paper](https://doi.org/10.1016/S0304-4076(00)00030-0). In your example, this would look like this:
+* fold 1 : training [1 2 3 4 5h], test [6]
+* fold 2 : training [1 2 3 4h h6], test [5]
+* fold 3 : training [1 2 3h h5 6], test [4]
+* fold 4 : training [1 2h h4 5 6], test [3]
+* fold 5 : training [1h h3 4 5 6], test [2]
+* fold 6 : training [h2 3 4 5 6], test [ 1]
+
+Where the h indicates that h observations of the training sample are deleted on that side.
 
 
 
