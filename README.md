@@ -237,9 +237,23 @@ model_fit = model.fit()
 yhat = model_fit.forecast(model_fit.y, steps=1)
 print(yhat)
 ```
-[Modeling with Facebook Prophet forecasting package](https://github.com/facebook/prophet) Prophet is a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, and daily seasonality, plus holiday effects. It works best with time series that have strong seasonal effects and several seasons of historical data. Prophet is robust to missing data and shifts in the trend, and typically handles outliers well.
 
+[Example: An End-to-End Project on Time Series Analysis and Forecasting with Python](https://towardsdatascience.com/an-end-to-end-project-on-time-series-analysis-and-forecasting-with-python-4835e6bf050b)
 
+[Time Series Analysis in Python – A Comprehensive Guide with Examples](https://www.machinelearningplus.com/time-series/time-series-analysis-python/)
+
+[Open Machine Learning Course mlcourse.ai: Topic 9. Part 1. Time series analysis in Python: Basics](https://mlcourse.ai/articles/topic9-part1-time-series/)
+
+[Open Machine Learning Course mlcourse.ai: Topic 9. Part 2. Time series analysis in Python: Predicting the future with Facebook Prophet](https://mlcourse.ai/articles/topic9-part2-prophet/)
+
+[Prophet: Automatic Forecasting Procedure](https://github.com/facebook/prophet): Modeling with Facebook Prophet forecasting package. Prophet is a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, and daily seasonality, plus holiday effects. It works best with time series that have strong seasonal effects and several seasons of historical data. Prophet is robust to missing data and shifts in the trend, and typically handles outliers well.
+
+### Granger causality 
+Granger causality test is used to determine if one time series will be useful to forecast another.
+
+How does Granger causality test work? It is based on the idea that if X causes Y, then the forecast of Y based on previous values of Y AND the previous values of X should outperform the forecast of Y based on previous values of Y alone.
+
+So, understand that Granger causality should not be used to test if a lag of Y causes Y. Instead, it is generally used on exogenous (not Y lag) variables only.
 
 ## Deep Learning
 ### Basic concept
