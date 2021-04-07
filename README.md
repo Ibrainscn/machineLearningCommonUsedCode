@@ -137,7 +137,22 @@ Last Updated: 12/16/2019
 - It is possible to save a model in scikit-learn by using Pythons built-in persistence model, namely pickle!
 
 ## Time Series 
-### Classical Time Series Forecasting Methods [11 methods in Python](https://machinelearningmastery.com/time-series-forecasting-methods-in-python-cheat-sheet/)
+### Classical Time Series Forecasting Methods
+This cheat sheet demonstrates [11 different classical time series forecasting methods](https://machinelearningmastery.com/time-series-forecasting-methods-in-python-cheat-sheet/); they are:
+1. Autoregression (AR)
+2. Moving Average (MA)
+3. Autoregressive Moving Average (ARMA)
+4. Autoregressive Integrated Moving Average (ARIMA)
+5. Seasonal Autoregressive Integrated Moving-Average (SARIMA)
+6. Seasonal Autoregressive Integrated Moving-Average with Exogenous Regressors (SARIMAX)
+7. Vector Autoregression (VAR)
+8. Vector Autoregression Moving-Average (VARMA)
+9. Vector Autoregression Moving-Average with Exogenous Regressors (VARMAX)
+10. Simple Exponential Smoothing (SES)
+11. Holt Winter’s Exponential Smoothing (HWES)
+
+[More information on Wikipedia: AR, MA, ARMA, ARIMA ...](https://en.wikipedia.org/wiki/Autoregressive%E2%80%93moving-average_model)
+
 
 
 
