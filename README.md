@@ -252,10 +252,6 @@ print(yhat)
 [Time Series vs Supervised Learning:](https://machinelearningmastery.com/convert-time-series-supervised-learning-problem-python/) Before machine learning can be used, time series forecasting problems must be re-framed as supervised learning problems. From a sequence to pairs of input and output sequences.
 
 
-[More information on Wikipedia: GC](https://en.wikipedia.org/wiki/Granger_causality)
-
-
-
 
 
 
@@ -266,6 +262,8 @@ Granger causality test is used to determine if one time series will be useful to
 How does Granger causality test work? It is based on the idea that if X causes Y, then the forecast of Y based on previous values of Y AND the previous values of X should outperform the forecast of Y based on previous values of Y alone.
 
 So, understand that Granger causality should not be used to test if a lag of Y causes Y. Instead, it is generally used on exogenous (not Y lag) variables only.
+
+[More information on Wikipedia: GC](https://en.wikipedia.org/wiki/Granger_causality)
 
 ## Deep Learning
 ### Basic concept
