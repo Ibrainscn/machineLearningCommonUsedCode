@@ -158,8 +158,86 @@ Brockwell & Davis recommend using [Akaike information criterion (AIC)](https://e
 
 [More information on Wikipedia: AR, MA, ARMA, ARIMA ...](https://en.wikipedia.org/wiki/Autoregressive%E2%80%93moving-average_model)
 
+### Python code:
+```python
+# AR example
+from statsmodels.tsa.ar_model import AutoReg
+from random import random
+# contrived dataset
+data = [x + random() for x in range(1, 100)]
+# fit model
+model = AutoReg(data, lags=1)
+model_fit = model.fit()
+# make prediction
+yhat = model_fit.predict(len(data), len(data))
+print(yhat)
 
+# MA example
+from statsmodels.tsa.arima.model import ARIMA
+from random import random
+# contrived dataset
+data = [x + random() for x in range(1, 100)]
+# fit model
+model = ARIMA(data, order=(0, 0, 1))
+model_fit = model.fit()
+# make prediction
+yhat = model_fit.predict(len(data), len(data))
+print(yhat)
 
+# ARMA example
+from statsmodels.tsa.arima.model import ARIMA
+from random import random
+# contrived dataset
+data = [random() for x in range(1, 100)]
+# fit model
+model = ARIMA(data, order=(2, 0, 1))
+model_fit = model.fit()
+# make prediction
+yhat = model_fit.predict(len(data), len(data))
+print(yhat)
+
+# ARIMA example
+from statsmodels.tsa.arima.model import ARIMA
+from random import random
+# contrived dataset
+data = [x + random() for x in range(1, 100)]
+# fit model
+model = ARIMA(data, order=(1, 1, 1))
+model_fit = model.fit()
+# make prediction
+yhat = model_fit.predict(len(data), len(data), typ='levels')
+print(yhat)
+
+# SARIMA example
+from statsmodels.tsa.statespace.sarimax import SARIMAX
+from random import random
+# contrived dataset
+data = [x + random() for x in range(1, 100)]
+# fit model
+model = SARIMAX(data, order=(1, 1, 1), seasonal_order=(0, 0, 0, 0))
+model_fit = model.fit(disp=False)
+# make prediction
+yhat = model_fit.predict(len(data), len(data))
+print(yhat)
+
+# VAR example
+from statsmodels.tsa.vector_ar.var_model import VAR
+from random import random
+# contrived dataset with dependency
+data = list()
+for i in range(100):
+    v1 = i + random()
+    v2 = v1 + random()
+    row = [v1, v2]
+    data.append(row)
+# fit model
+model = VAR(data)
+model_fit = model.fit()
+# make prediction
+yhat = model_fit.forecast(model_fit.y, steps=1)
+print(yhat)
+```
+[Modeling with Facebook Prophet forecasting package](https://github.com/facebook/prophet) Prophet is a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, and daily seasonality, plus holiday effects. It works best with time series that have strong seasonal effects and several seasons of historical data. Prophet is robust to missing data and shifts in the trend, and typically handles outliers well.
 
 
 
