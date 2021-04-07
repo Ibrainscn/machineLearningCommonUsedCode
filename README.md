@@ -5,17 +5,25 @@ Last Updated: 12/16/2019
 
 ---
 ## Pre-processing
-- Train Test Split
-    - k-fold CV: This procedure splits the data into k folds or groups. (k-1) groups will be assigned to train and the remaining group to validate data. This step is repeated for k-steps until all the groups participated in the validation data.
-    - StatifiedKfold CV: This procedure is similar to the k-fold CV. Here the dataset is partitioned into k groups or folds such that the validation and train data has an equal number of instances of target class label. This ensures that one particular class is not over present in the validation or train data especially when the dataset is imbalanced.
-    - Nested CV: Inner loop tune parameters, outer loop train with the optimal parameters. The inner-CV is applied to the (k-1) folds or groups dataset from the outer CV. The set of parameters are optimized using GridSearch and is then used to configure the model. The best model returned from GridSearchCV or RandomSearchCV is then evaluated using the last fold or group. This method is repeated k times, and the final CV score is computed by taking the mean of all k scores.
-    - The multi-granularity framework for semi-random data partitioning [paper ref](https://link.springer.com/article/10.1007/s41066-017-0049-2).
-    This framework involves three levels of granularity as outlined below:
-        1. Level 1 Data Partitioning is done randomly on the basis of the original data set towards getting a training set and a test set.
-        2. Level 2 The original data set is divided into a number of subsets, with each subset containing a class of instances. Within each subset (i.e., all instances with a particular class label), data partitioning into training and test sets is done randomly. The training and test sets for the whole data set are obtained by merging all the training and test subsets, respectively.
-        3. Level 3 Based on the subsets obtained in Level 2, each of them is divided again into a number of subsubsets, where each of the subsubsets contains a subclass (of the corresponding class) of instances. The data partitioning is done randomly within each subsubset. The training and test sets for the whole data set are obtained by merging all the training and test subsubsets, respectively.
-        
-        In this multi-granularity framework, Level 2 is aimed at addressing the class imbalance issue, i.e., to control the distribution of instances by class within the training and test sets. Level 3 is aimed at addressing the issue of sample representativeness, i.e., it is to avoid the case that the training instances are highly dissimilar to the test instances following the data partitioning.
+### Train Test Split
+* K-Fold CV: This procedure splits the data into k folds or groups. (k-1) groups will be assigned to train and the remaining group to validate data. This step is repeated for k-steps until all the groups participated in the validation data.
+
+* Repeated K-Fold: RepeatedKFold repeats K-Fold n times. It can be used when one requires to run KFold n times, producing different splits in each repetition.
+
+* Leave One Out (LOO): LeaveOneOut (or LOO) is a simple cross-validation. Each learning set is created by taking all the samples except one, the test set being the sample left out. Thus, for  samples, we have  different training sets and  different tests set. This cross-validation procedure does not waste much data as only one sample is removed from the training set．
+    - LOO is more computationally expensive than -fold cross validation. In terms of accuracy, LOO often results in high variance as an estimator for the test error. Intuitively, since  of the  samples are used to build each model, models constructed from folds are virtually identical to each other and to the model built from the entire training set.
+    
+* StatifiedKfold CV: This procedure is similar to the k-fold CV. Here the dataset is partitioned into k groups or folds such that the validation and train data has an equal number of instances of target class label. This ensures that one particular class is not over present in the validation or train data especially when the dataset is imbalanced.
+    
+* Nested CV: Inner loop tune parameters, outer loop train with the optimal parameters. The inner-CV is applied to the (k-1) folds or groups dataset from the outer CV. The set of parameters are optimized using GridSearch and is then used to configure the model. The best model returned from GridSearchCV or RandomSearchCV is then evaluated using the last fold or group. This method is repeated k times, and the final CV score is computed by taking the mean of all k scores.
+
+* The multi-granularity framework for semi-random data partitioning [paper ref](https://link.springer.com/article/10.1007/s41066-017-0049-2).
+This framework involves three levels of granularity as outlined below:
+    1. Level 1 Data Partitioning is done randomly on the basis of the original data set towards getting a training set and a test set.
+    2. Level 2 The original data set is divided into a number of subsets, with each subset containing a class of instances. Within each subset (i.e., all instances with a particular class label), data partitioning into training and test sets is done randomly. The training and test sets for the whole data set are obtained by merging all the training and test subsets, respectively.
+    3. Level 3 Based on the subsets obtained in Level 2, each of them is divided again into a number of subsubsets, where each of the subsubsets contains a subclass (of the corresponding class) of instances. The data partitioning is done randomly within each subsubset. The training and test sets for the whole data set are obtained by merging all the training and test subsubsets, respectively.
+            
+    In this multi-granularity framework, Level 2 is aimed at addressing the class imbalance issue, i.e., to control the distribution of instances by class within the training and test sets. Level 3 is aimed at addressing the issue of sample representativeness, i.e., it is to avoid the case that the training instances are highly dissimilar to the test instances following the data partitioning.
 
 
     
@@ -270,9 +278,9 @@ To make things intuitive, here is an image for same:
 ### Time series hv-block cross-validation
 There is nothing wrong with using blocks of "future" data for time series cross validation in most situations. By most situations I refer to models for stationary data, which are the models that we typically use. E.g. when you fit an ARIMA(p,d,q), with d>0 to a series, you take d differences of the series and fit a model for stationary data to the residuals.
 
-For cross validation to work as a model selection tool, you need approximate independence between the training and the test data. The problem with time series data is that adjacent data points are often highly dependent, so standard cross validation will fail. The remedy for this is to leave a gap between the test sample and the training samples, on both sides of the test sample. The reason why you also need to leave out a gap before the test sample is that dependence is symmetric when you move forward or backward in time (think of correlation).
+For cross validation to work as a model selection tool, you need approximate independence between the training and the test data. The problem with time series data is that **adjacent data points are often highly dependent**, so standard cross validation will fail. The remedy for this is to **leave a gap between the test sample and the training samples**, on both sides of the test sample. The reason why you also need to leave out a gap before the test sample is that dependence is symmetric when you move forward or backward in time (think of correlation).
 
-This approach is called hv cross validation (leave v out, delete h observations on either side of the test sample) and is described in [this paper](https://doi.org/10.1016/S0304-4076(00)00030-0). In your example, this would look like this:
+This approach is called hv cross validation (**leave v out, delete h observations on either side of the test sample**) and is described in [this paper](https://doi.org/10.1016/S0304-4076(00)00030-0). For example, this would look like this:
 * fold 1 : training [1 2 3 4 5h], test [6]
 * fold 2 : training [1 2 3 4h h6], test [5]
 * fold 3 : training [1 2 3h h5 6], test [4]
