@@ -56,6 +56,8 @@ This framework involves three levels of granularity as outlined below:
     3. Level 3 Based on the subsets obtained in Level 2, each of them is divided again into a number of subsubsets, where each of the subsubsets contains a subclass (of the corresponding class) of instances. The data partitioning is done randomly within each subsubset. The training and test sets for the whole data set are obtained by merging all the training and test subsubsets, respectively.
             
     In this multi-granularity framework, Level 2 is aimed at addressing the class imbalance issue, i.e., to control the distribution of instances by class within the training and test sets. Level 3 is aimed at addressing the issue of sample representativeness, i.e., it is to avoid the case that the training instances are highly dissimilar to the test instances following the data partitioning.
+    
+    ![Multi-granularity framework for semi-random data partitioning](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/Multi-granularity%20framework%20for%20semi-random%20data%20partitioning.JPG)
 
 
 - Feature Extraction
