@@ -211,7 +211,9 @@ In this multi-granularity framework, Level 2 is aimed at addressing the class im
     - The variance of the series should not be a function of time.
     - Finally, the covariance of the i th term and the (i + m) th term should not be a function of time. 
     
-    > Why is this important? When running a linear regression the assumption is that all of the observations are all independent of each other. In a time series, however, we know that observations are time dependent. It turns out that a lot of nice results that hold for independent random variables (law of large numbers and central limit theorem to name a couple) hold for stationary random variables. So by making the data stationary, we can actually apply regression techniques to this time dependent variable.
+        > Why is this important?
+        >* When running a linear regression the assumption is that all of the observations are all independent of each other. In a time series, however, we know that observations are time dependent. It turns out that a lot of nice results that hold for independent random variables (law of large numbers and central limit theorem to name a couple) hold for stationary random variables. 
+        >* So by making the data stationary, we can actually apply regression techniques to this time dependent variable.
     
     There are two ways you can check the stationarity of a time series: 
     
