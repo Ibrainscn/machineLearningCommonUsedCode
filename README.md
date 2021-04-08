@@ -183,6 +183,8 @@ In this multi-granularity framework, Level 2 is aimed at addressing the class im
 #### The process:
 ![The process of analyze time serires](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/The%20process%20of%20analyz%20time%20serires%20flow%20chart.png)
 
+More information can be found in the post by [Sean Abu](http://www.seanabu.com/2016/03/22/time-series-seasonal-ARIMA-model-in-python/).
+
 1. Visualize the data:
 
     We first want to visualize the data to understand what type of model we should use. Is there an overall trend in your data that you should be aware of? Does the data show any seasonal trends? This is important when deciding which type of model to use. 
@@ -207,13 +209,12 @@ In this multi-granularity framework, Level 2 is aimed at addressing the class im
 2. Stationarize the data:
 
     What does it mean for data to be stationary?
-    - The mean of the series should not be a function of time.
-    - The variance of the series should not be a function of time.
-    - Finally, the covariance of the i th term and the (i + m) th term should not be a function of time. 
     
-        > Why is this important?
-        >* When running a linear regression the assumption is that all of the observations are all independent of each other. In a time series, however, we know that observations are time dependent. It turns out that a lot of nice results that hold for independent random variables (law of large numbers and central limit theorem to name a couple) hold for stationary random variables. 
-        >* So by making the data stationary, we can actually apply regression techniques to this time dependent variable.
+    If a process is stationary, that means it does not change its statistical properties over time, namely its mean and variance. (The constancy of variance is called homoscedasticity) The covariance function does not depend on time; it should only depend on the distance between observations. 
+    > So why is stationarity so important?
+    >* Because it is easy to make predictions on a stationary series since we can assume that the future statistical properties will not be different from those currently observed. Most of the time-series models, in one way or the other, try to predict those properties (mean or variance, for example). Furture predictions would be wrong if the original series were not stationary. Unfortunately, most of the time series that we see outside of textbooks are non-stationary, but we can (and should) change this.
+    >* When running a linear regression the assumption is that all of the observations are all independent of each other. In a time series, however, we know that observations are time dependent. It turns out that a lot of nice results that hold for independent random variables (law of large numbers and central limit theorem to name a couple) hold for stationary random variables. 
+    >* So by making the data stationary, we can actually apply regression techniques to this time dependent variable.
     
     There are two ways you can check the stationarity of a time series: 
     
