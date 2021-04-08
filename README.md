@@ -44,20 +44,23 @@ In this case we would like to know if a model trained on a particular set of gro
 **Here are the visualization of the above different cross-validation behavior:**
 ![Visualizing 7 types of cross-validation behavior](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/Visualizing%207%20types%20of%20cross-validation%20behavior.png)
     
-* **Nested CV**: Inner loop tune parameters, outer loop train with the optimal parameters. The inner-CV is applied to the (k-1) folds or groups dataset from the outer CV. The set of parameters are optimized using GridSearch and is then used to configure the model. The best model returned from GridSearchCV or RandomSearchCV is then evaluated using the last fold or group. This method is repeated k times, and the final CV score is computed by taking the mean of all k scores.
+**Nested CV** 
+
+Inner loop tune parameters, outer loop train with the optimal parameters. The inner-CV is applied to the (k-1) folds or groups dataset from the outer CV. The set of parameters are optimized using GridSearch and is then used to configure the model. The best model returned from GridSearchCV or RandomSearchCV is then evaluated using the last fold or group. This method is repeated k times, and the final CV score is computed by taking the mean of all k scores.
 
 **Here is a visualization of the nested CV behavior:**
 ![Nested CV](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/Nested%20CV.jpg)
 
-* **The multi-granularity framework for semi-random data partitioning** [paper ref](https://link.springer.com/article/10.1007/s41066-017-0049-2).
+**The multi-granularity framework for semi-random data partitioning** [paper ref](https://link.springer.com/article/10.1007/s41066-017-0049-2).
+
 This framework involves three levels of granularity as outlined below:
-    1. Level 1 Data Partitioning is done randomly on the basis of the original data set towards getting a training set and a test set.
-    2. Level 2 The original data set is divided into a number of subsets, with each subset containing a class of instances. Within each subset (i.e., all instances with a particular class label), data partitioning into training and test sets is done randomly. The training and test sets for the whole data set are obtained by merging all the training and test subsets, respectively.
-    3. Level 3 Based on the subsets obtained in Level 2, each of them is divided again into a number of subsubsets, where each of the subsubsets contains a subclass (of the corresponding class) of instances. The data partitioning is done randomly within each subsubset. The training and test sets for the whole data set are obtained by merging all the training and test subsubsets, respectively.
+1. Level 1 Data Partitioning is done randomly on the basis of the original data set towards getting a training set and a test set.
+2. Level 2 The original data set is divided into a number of subsets, with each subset containing a class of instances. Within each subset (i.e., all instances with a particular class label), data partitioning into training and test sets is done randomly. The training and test sets for the whole data set are obtained by merging all the training and test subsets, respectively.
+3. Level 3 Based on the subsets obtained in Level 2, each of them is divided again into a number of subsubsets, where each of the subsubsets contains a subclass (of the corresponding class) of instances. The data partitioning is done randomly within each subsubset. The training and test sets for the whole data set are obtained by merging all the training and test subsubsets, respectively.
             
-    In this multi-granularity framework, Level 2 is aimed at addressing the class imbalance issue, i.e., to control the distribution of instances by class within the training and test sets. Level 3 is aimed at addressing the issue of sample representativeness, i.e., it is to avoid the case that the training instances are highly dissimilar to the test instances following the data partitioning.
+In this multi-granularity framework, Level 2 is aimed at addressing the class imbalance issue, i.e., to control the distribution of instances by class within the training and test sets. Level 3 is aimed at addressing the issue of sample representativeness, i.e., it is to avoid the case that the training instances are highly dissimilar to the test instances following the data partitioning.
     
-    ![Multi-granularity framework for semi-random data partitioning](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/Multi-granularity%20framework%20for%20semi-random%20data%20partitioning.JPG)
+![Multi-granularity framework for semi-random data partitioning](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/Multi-granularity%20framework%20for%20semi-random%20data%20partitioning.JPG)
 
 
 - Feature Extraction
