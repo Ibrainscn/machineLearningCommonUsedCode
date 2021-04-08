@@ -181,9 +181,9 @@ In this multi-granularity framework, Level 2 is aimed at addressing the class im
 
 ## Time Series 
 #### The process:
-![The process of analyze time serires](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/The%20process%20of%20analyz%20time%20serires%20flow%20chart.png)
-
 More information can be found in the post by [Sean Abu](http://www.seanabu.com/2016/03/22/time-series-seasonal-ARIMA-model-in-python/).
+
+![The process of analyze time serires](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/The%20process%20of%20analyz%20time%20serires%20flow%20chart.png)
 
 1. Visualize the data:
 
