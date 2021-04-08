@@ -180,6 +180,56 @@ In this multi-granularity framework, Level 2 is aimed at addressing the class im
 - It is possible to save a model in scikit-learn by using Pythons built-in persistence model, namely pickle!
 
 ## Time Series 
+#### The process:
+![The process of analyze time serires](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/The%20process%20of%20analyz%20time%20serires%20flow%20chart.png)
+
+1. Visualize the data:
+
+    We first want to visualize the data to understand what type of model we should use. Is there an overall trend in your data that you should be aware of? Does the data show any seasonal trends? This is important when deciding which type of model to use. 
+    
+    If you are using daily data for your time series and there is too much variation in the data to determine the trends, you might want to look at **resampling** your data by month, or looking at the **rolling mean** and **rolling std**.
+    
+    Another tool to visualize the data is the **seasonal_decompose function in statsmodel**. With this, the **trend and seasonality** become even more obvious.
+    
+    ```python
+    from statsmodels.tsa.seasonal import seasonal_decompose
+    from statsmodels.tsa.stattools import acf  
+    from statsmodels.tsa.stattools import pacf
+    decomposition = seasonal_decompose(df.riders, freq=12)  
+    trend = decomposition.trend
+    seasonal = decomposition.seasonal 
+    # The residual values essentially take out the trend and seasonality of the data, making the values independent of time.
+    residual = decomposition.residual  
+    fig = plt.figure()  
+    fig = decomposition.plot()  
+    fig.set_size_inches(15, 8)
+    ```
+2. Stationarize the data:
+
+    What does it mean for data to be stationary?
+    - The mean of the series should not be a function of time.
+    - The variance of the series should not be a function of time.
+    - Finally, the covariance of the i th term and the (i + m) th term should not be a function of time. 
+    
+    > Why is this important? When running a linear regression the assumption is that all of the observations are all independent of each other. In a time series, however, we know that observations are time dependent. It turns out that a lot of nice results that hold for independent random variables (law of large numbers and central limit theorem to name a couple) hold for stationary random variables. So by making the data stationary, we can actually apply regression techniques to this time dependent variable.
+    
+    There are two ways you can check the stationarity of a time series: 
+    
+    - The first is by looking at the data. By visualizing the data it should be easy to identify a changing mean or variation in the data. 
+    
+    - For a more accurate assessment there is the **Dickey-Fuller test**. I won’t go into the specifics of this test, but if the ‘Test Statistic’ is greater than the ‘Critical Value’ than the time series is stationary.
+    
+    So now we need to transform the data to make it more stationary. There are various transformations you can do to stationarize the data:
+    - Logarithmic
+    - First Difference
+    - Seasonal Difference
+    - Seasonal Adjustment
+    - You can read more [here](http://people.duke.edu/~rnau/whatuse.htm) about when to use which.
+
+
+    
+
+
 ### Classical Time Series Forecasting Methods
 This cheat sheet demonstrates [11 different classical time series forecasting methods](https://machinelearningmastery.com/time-series-forecasting-methods-in-python-cheat-sheet/); they are:
 1. Autoregression (AR)
