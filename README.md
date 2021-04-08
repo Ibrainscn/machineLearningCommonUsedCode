@@ -50,7 +50,7 @@ In this case we would like to know if a model trained on a particular set of gro
 * **Nested CV**: Inner loop tune parameters, outer loop train with the optimal parameters. The inner-CV is applied to the (k-1) folds or groups dataset from the outer CV. The set of parameters are optimized using GridSearch and is then used to configure the model. The best model returned from GridSearchCV or RandomSearchCV is then evaluated using the last fold or group. This method is repeated k times, and the final CV score is computed by taking the mean of all k scores.
 
 **Here is a visualization of the nested CV behavior:**
-![]()
+![Nested CV](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/Nested%20CV.jpg)
 
 * **The multi-granularity framework for semi-random data partitioning** [paper ref](https://link.springer.com/article/10.1007/s41066-017-0049-2).
 This framework involves three levels of granularity as outlined below:
