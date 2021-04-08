@@ -6,6 +6,9 @@ Last Updated: 12/16/2019
 ---
 ## Pre-processing
 ### Train Test Split
+[Cross-validation: evaluating estimator performance in scikit-learn](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation)
+
+**Cross-validation iterators for i.i.d. data:**
 * **K-Fold CV**: This procedure splits the data into k folds or groups. (k-1) groups will be assigned to train and the remaining group to validate data. This step is repeated for k-steps until all the groups participated in the validation data.
 
 * **Repeated K-Fold**: RepeatedKFold repeats K-Fold n times. It can be used when one requires to run KFold n times, producing different splits in each repetition.
@@ -13,17 +16,41 @@ Last Updated: 12/16/2019
 * **Leave One Out (LOO)**: LeaveOneOut (or LOO) is a simple cross-validation. Each learning set is created by taking all the samples except one, the test set being the sample left out. Thus, for  samples, we have  different training sets and  different tests set. This cross-validation procedure does not waste much data as only one sample is removed from the training set．
     - LOO is more computationally expensive than -fold cross validation. In terms of accuracy, LOO often results in high variance as an estimator for the test error. Intuitively, since  of the  samples are used to build each model, models constructed from folds are virtually identical to each other and to the model built from the entire training set.
     
-* **StatifiedKfold CV**: This procedure is similar to the k-fold CV. Here the dataset is partitioned into k groups or folds such that the validation and train data has an equal number of instances of target class label. This ensures that one particular class is not over present in the validation or train data especially when the dataset is imbalanced.
-
 * **ShuffleSplit CV**: Random permutations cross-validation a.k.a. Shuffle & Split: The ShuffleSplit iterator will generate a user defined number of independent train / test dataset splits. Samples are first shuffled and then split into a pair of train and test sets.
+
+**Cross-validation iterators with stratification based on class labels:**
+
+Some classification problems can exhibit a large imbalance in the distribution of the target classes: for instance there could be several times more negative samples than positive samples. In such cases it is recommended to use stratified sampling as implemented in **StratifiedKFold** and **StratifiedShuffleSplit** to ensure that relative class frequencies is approximately preserved in each train and validation fold.
+    
+* **StatifiedKfold CV**: This procedure is similar to the k-fold CV. Here the dataset is partitioned into k groups or folds such that the validation and train data has an equal number of instances of target class label. This ensures that one particular class is not over present in the validation or train data especially when the dataset is imbalanced.
 
 * **Stratified Shuffle Split**: StratifiedShuffleSplit is a variation of ShuffleSplit, which returns stratified splits, i.e which creates splits by preserving the same percentage for each target class as in the complete set.
 
+**Cross-validation iterators for grouped data:**
 
-* **Here are the visualization of the above different cross-validation behavior:**
+The i.i.d. assumption is broken if the underlying generative process yield groups of dependent samples.
+
+Such a grouping of data is domain specific. An example would be when there is medical data collected from multiple patients, with multiple samples taken from each patient. And such data is likely to be dependent on the individual group. In our example, the patient id for each sample will be its group identifier.
+
+In this case we would like to know if a model trained on a particular set of groups generalizes well to the unseen groups. To measure this, we need to ensure that all the samples in the validation fold come from groups that are not represented at all in the paired training fold.
+
+* **Group k-fold**: GroupKFold is a variation of k-fold which ensures that the same group is not represented in both testing and training sets. For example if the data is obtained from different subjects with several samples per-subject and if the model is flexible enough to learn from highly person specific features it could fail to generalize to new subjects. GroupKFold makes it possible to detect this kind of overfitting situations.
+
+* **Leave One Group Out**: LeaveOneGroupOut is a cross-validation scheme which holds out the samples according to a third-party provided array of integer groups. This group information can be used to encode arbitrary domain specific pre-defined cross-validation folds.
+
+    Each training set is thus constituted by all the samples except the ones related to a specific group.
+    
+    For example, in the cases of multiple experiments, LeaveOneGroupOut can be used to create a cross-validation based on the different experiments: we create a training set using the samples of all the experiments except one.
+    
+* **Group Shuffle Split**: The GroupShuffleSplit iterator behaves as a combination of ShuffleSplit and LeavePGroupsOut, and generates a sequence of randomized partitions in which a subset of groups are held out for each split.
+
+**Here are the visualization of the above different cross-validation behavior:**
 ![Visualizing 7 types of cross-validation behavior](https://github.com/Ibrainscn/machineLearningCommonUsedCode/blob/master/image/Visualizing%207%20types%20of%20cross-validation%20behavior.png)
     
 * **Nested CV**: Inner loop tune parameters, outer loop train with the optimal parameters. The inner-CV is applied to the (k-1) folds or groups dataset from the outer CV. The set of parameters are optimized using GridSearch and is then used to configure the model. The best model returned from GridSearchCV or RandomSearchCV is then evaluated using the last fold or group. This method is repeated k times, and the final CV score is computed by taking the mean of all k scores.
+
+**Here is a visualization of the nested CV behavior:**
+![]()
 
 * **The multi-granularity framework for semi-random data partitioning** [paper ref](https://link.springer.com/article/10.1007/s41066-017-0049-2).
 This framework involves three levels of granularity as outlined below:
@@ -33,8 +60,6 @@ This framework involves three levels of granularity as outlined below:
             
     In this multi-granularity framework, Level 2 is aimed at addressing the class imbalance issue, i.e., to control the distribution of instances by class within the training and test sets. Level 3 is aimed at addressing the issue of sample representativeness, i.e., it is to avoid the case that the training instances are highly dissimilar to the test instances following the data partitioning.
 
-
-    
 
 - Feature Extraction
 - Scaling and Normalization
